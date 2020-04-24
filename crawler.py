@@ -201,11 +201,9 @@ def crawler(seed_url,offline=False,deep = -1,proxy = False,user_name = None,pass
         print(url)
         print(f'page: {c}')
         html = download(url,proxy,offline)
-        # TODO Esperar a que arreglen ese bug...
         # html = crawl_js(html)
-        # print(html)
         links = get_links(html,url,offline)
-        # ! Obtener titulo de los mensajes
+        # ! getting message headers
         # if url.endswith('.html'):
         # title = get_title(html,url)
         # print(links)
@@ -283,7 +281,8 @@ def Count_Words(text,url,db_words,db_global_words):
             dict[t] += 1
         else:
             dict[t] = 1
-    print(f'dict-keys:{len(dict.keys())}')    
+    print(f'dict-keys:{len(dict.keys())}')  
+    # inserting words into the mongo DB
     # for key in dict.keys():
     #     db_words.insert({"word":key,"count":dict[key],"url":url})
     #     db_global_words.update(
@@ -338,11 +337,8 @@ def consult(consulta,word='',url=''):
 # erase_content(db2)
 # print("Todo Borrado")
 
-# url = ["""C:\\jonathan\\revolico\\index.htm"""]
-# url = ["""/media/jonathaaan/01D46D7787219D90/jonathan/university/5to/Proyect/VGM_SRI/revolico/index.htm"""]
-# rev_path = """C:\\jonathan\\revolico"""
 url = ["https://www.revolico.com/"]
 rev_path = "https://www.revolico.com/"
-# rev_path = """/media/jonathaaan/01D46D7787219D90/jonathan/university/5to/Proyect/VGM_SRI/revolico"""
-# crawler(url,offline=True)
-# crawler(url,offline=False,deep=-1,proxy=True,user_name="j.figueroa@estudiantes.matcom.uh.cu",passwrd="guitarPlay3r!",host_ip="10.6.100.71",lport="3128")
+              
+#crawler call
+crawler(rev_path, True)
